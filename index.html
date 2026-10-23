@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schulplaner</title>
+  <meta name="theme-color" content="#2563eb">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Schulplaner</h1>
+    <span>Hi, <strong id="user-name"></strong></span>
+  </header>
+
+  <!-- Shown only on the very first launch -->
+  <main id="welcome" hidden>
+    <h2>Welcome!</h2>
+    <form id="name-form">
+      <label for="name-input">What is your name?</label>
+      <input id="name-input" maxlength="30" required>
+      <button type="submit">Start</button>
+    </form>
+  </main>
+
+  <main id="app" hidden>
+    <div class="toolbar">
+      <label for="filter">Show</label>
+      <select id="filter">
+        <option value="">All types</option>
+        <option value="lesson">Lessons</option>
+        <option value="homework">Homework</option>
+        <option value="test">Tests</option>
+      </select>
+      <button id="export-btn" type="button">Export file</button>
+      <button id="import-btn" type="button">Import file</button>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+    </div>
+
+    <p id="message" class="message" role="status" hidden></p>
+
+    <ul id="event-list"></ul>
+    <p id="empty" hidden>Nothing here yet. Add your first lesson, homework or test below.</p>
+
+    <h2 id="form-heading">Add event</h2>
+    <form id="event-form">
+      <label for="title">Title</label>
+      <input id="title" maxlength="80" required>
+      <label for="subject">Subject</label>
+      <input id="subject" maxlength="40" required>
+      <label for="type">Type</label>
+      <select id="type">
+        <option value="lesson">Lesson</option>
+        <option value="homework">Homework</option>
+        <option value="test">Test</option>
+      </select>
+      <label for="date">Date</label>
+      <input id="date" type="date" required>
+      <div class="row">
+        <button id="save-btn" type="submit">Add event</button>
+        <button id="cancel-btn" type="button" hidden>Cancel</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- storage.js must come BEFORE app.js, because app.js uses its functions -->
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
